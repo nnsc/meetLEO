@@ -1,0 +1,1219 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+/*  My CSS Stuff  */
+
+body {
+  padding-top: 50px;
+}
+
+.responsiveImg {
+	width: 100%;
+	height: auto;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.container {
+	max-width: 1100px;
+}
+
+.frame {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	min-width: 800px;
+	max-width: 1200px;
+	border: 15px #FEFEFE solid;
+	height: 900px;
+	background: rgb(161, 216, 201);
+	position: relative;
+	overflow: hidden;
+}
+
+.frameEnd {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	min-width: 800px;
+	max-width: 1200px;
+	border: 15px #FEFEFE solid;
+	height: 900px;
+	background: rgb(172, 177, 56);
+	position: relative;
+	overflow: hidden;
+}
+
+
+#nextButton {
+	width: 150px;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+
+.correctTextBox a{
+	position: absolute;
+	width: 75%;
+	height: auto;
+	left: 0;
+	right: 0;
+	bottom: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	animation: slide-up-correctTxt 1s;
+}
+
+@keyframes slide-up-correctTxt {
+	from {
+		bottom: -580px;
+	}
+	to {
+		bottom: 0px;
+	}
+}
+
+#score {
+	display: block;
+	position: absolute;
+	left: 80px;
+	bottom: 100px;
+	width: 210px;
+	height: 140px;
+	border-radius: 25px;
+	background-color: rgb(193, 106, 41);
+	box-shadow: 5px 5px 20px rgba(30,30,30, 0.5);
+}
+
+#time {
+	display: block;
+	position: absolute;
+	right: 80px;
+	bottom: 100px;
+	width: 210px;
+	height: 140px;
+	border-radius: 25px;
+	background-color: rgb(254, 195, 68);
+	box-shadow: 5px 5px 20px rgba(30,30,30, 0.5);
+}
+
+
+#WhoAmI {
+	width: 53%;
+	height: auto;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	right: 0;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 1%;
+}
+
+#WhoAmI a{
+	-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  	filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));	
+}
+	
+#WhoAmI a:hover {
+	-webkit-filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+  	filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+}
+
+.whoAnimation {
+	animation: slide-down-who 1s;
+}
+
+@keyframes slide-down-who {
+	from {
+		margin-top: -20%;
+	}
+	to{
+		margin-top: 1%;
+	}
+}
+
+#situationTxt {
+		width: 83%;
+		height: auto;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 55%;
+		z-index: 30;
+		animation: slide-up-sitTxt 2s;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	@keyframes slide-up-sitTxt {
+		from {
+			margin-top: 80%;
+		}
+		to {
+			margin-top: 55%;	
+		}
+	}
+	
+
+.opacityShift {
+	opacity: 1;
+	animation: fade-in-opacity 1s;
+}
+
+@keyframes fade-in-opacity {
+	from {
+		opacity: 0.0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.fadeInCorrect {
+	opacity: 1;
+	animation: fade-in-correct 1s;
+}
+
+@keyframes fade-in-correct {
+	from {
+		opacity: 0.0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+	
+/*  Page Specific CSS --------------------------------------  */
+
+
+	/*  Index.html and end.html ----------------- */
+
+	#homeTxt {
+		position: absolute;
+		width: 65%;
+		height: auto;
+		left: 0;
+		right: 0;
+		top: 10%;
+		margin-left: auto;
+		margin-right: auto;
+		
+	}
+	
+	#startGameTxt {
+		position: absolute;
+		width: 33%;
+		height: auto;
+		left: 8%;
+		bottom: 25%;
+	}
+	
+	#meetLeoOrg {
+		position: absolute;
+		width: 33%;
+		height: auto;
+		right: 11%;
+		bottom: 21%;
+	}
+	
+	#friendsWLeo {
+		position: absolute;
+		width: 350px;
+		bottom: 0px;
+		left: 360px;
+	}
+	
+	#thanksTxt {
+		position: absolute;
+		width: 60%;
+		height: auto;
+		left: 0;
+		right: 0;
+		top: 14%;
+		margin-left: auto;
+		margin-right: auto;		
+	}
+	
+	#playAgain {
+		position: absolute;
+		width: 40%;
+		height: auto;
+		left: 8%;
+		bottom: 16%;
+		
+	}
+	
+	#meetLEO {
+		position: absolute;
+		width: 40%;
+		height: auto;
+		right: 10%;
+		bottom: 13%;
+	}
+	
+	/* ------ Home Screen --------------------------- */
+	
+	.sitButton a{
+		display: block;
+		width: 300px;
+		height: 80px;
+		background: rgb(193, 106, 41);
+		padding-top: 15px;
+		padding-bottom: 15px;
+		color: #FAFAFA;
+		text-align: center;
+		font-size: 1em;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 25px;
+	}
+	
+	.sitButton a:hover {
+		text-decoration: none;
+	}
+	
+	
+
+/*-------------------SITUATION 01--------------------------*/
+
+	/*-----------sit01 Index----------------------*/
+	
+	.dance {
+		background-image: url(../situation_01/assets01/Dance-Background.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#Box1 {
+		background-image: url(../situation_01/assets01/Next-Level-Background.png);
+	}
+
+	.nextLvlBox {
+		position: absolute;
+		display: block;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+		right: 0;
+		left: 0;
+		top: 0;
+		width: 50%;
+		height: 700px;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 8%;
+		
+	
+	}
+	#nextLvlTxt {
+		width: 65%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20%;
+	}
+	
+	
+	#nextSitArrow a{
+		position: absolute;
+		width: 300px;
+		top: 400px;
+		left: 180px;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	#nextSitArrow a:hover {
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+		filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+	}
+	
+	
+	/*-----------sit01 Characters----------------------*/
+	
+	#danceMale {
+		float: left;
+		width: 27%;
+		height: auto;
+		margin: 13% 3% 0% 4%;
+		animation: slide-right-danceMale 1s;
+	}
+	
+	@keyframes slide-right-danceMale {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 4%;
+		}
+	}
+	
+	.character a {
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	.character a:hover {
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+	}
+	
+	
+	#danceMaleCorrect {
+		width: 51%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	#danceFemaleOne {
+		float: left;
+		width: 26%;
+		height: auto;
+		margin: 17% 3% 0% 4%;
+		animation: slide-right-danceFemaleOne 2s;
+	}
+	
+	@keyframes slide-right-danceFemaleOne {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 4%;
+		}
+	}
+	
+	#danceFemaleTwo {
+		float: left;
+		width: 26%;
+		height: auto;
+		margin: 18% 2% 0% 3%;
+		animation: slide-right-danceFemaleTwo 3s;
+	}
+	
+	@keyframes slide-right-danceFemaleTwo {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 3%;
+		}
+	}
+	
+	/*-----------sit01 Situation----------------------*/
+	
+	
+	#wrongGirl {
+		position: absolute;
+		width: 50%;
+		top: 0;
+		right: 0;
+		left: 0;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	#wrongExplain {
+		position: absolute;
+		width: 72%;
+		height: auto;
+		right: 0;
+		left: 0;
+		bottom: -20px;
+		margin-right: auto;
+		margin-left: auto;
+		animation: slide-up-wrongEx 2s;
+	}
+	
+	@keyframes slide-up-wrongEx {
+		from {
+			bottom: -800px;
+		}
+		to {
+			bottom: -20px;
+		}
+	}
+	
+	
+	#wrongCorrectTxt {
+		position: absolute;
+		width: 70%;
+		height: auto;
+		top: 0;
+		right: 0;
+		left: 0;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 38%;
+	}
+	
+	
+	
+	
+	/*-------------------SITUATION 02--------------------------*/
+
+	/*-----------sit02 Index----------------------*/
+	
+	.library {
+		background-image: url(../situation_02/assets02/Library-Background.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#sit02title {
+		width: 610px;
+		height: 160px;
+		position: absolute;
+		top: 50px;
+		left: 280px;
+		
+	}
+	#Box2 {
+		background-image: url(../situation_02/assets02/Next-Level-Background.png);
+	
+	}
+	
+	
+	#nextSitArrow a{
+		position: absolute;
+		width: 300px;
+		top: 400px;
+		left: 180px;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	#nextSitArrow a:hover {
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+		filter: drop-shadow(5px 5px 20px rgba(220,220,220, 0.5));
+	}
+	
+	
+	/*-----------sit02 Characters----------------------*/
+	
+	
+	#libraryMale01 {
+		float: left;
+		width: 27%;
+		height: auto;
+		margin: 13% 3% 0% 3%;
+		animation: slide-right-LibraryMale01 1s;
+	}
+	
+	@keyframes slide-right-LibraryMale01 {
+		from {
+			margin-left: -70%;
+		}
+		to {
+			margin-left: 3%;	
+		}
+	}
+
+	#libraryFemale {
+		float: left;
+		width: 27%;
+		height: auto;
+		margin: 13% 3% 0% 3%;
+		animation: slide-right-LibraryFemale 2s;
+	}
+	
+	@keyframes slide-right-LibraryFemale {
+		from {
+			margin-left: -80%;
+		}
+		to {
+			margin-left: 3%;	
+		}
+	}
+	
+	#libraryFemaleCorrect {
+		width: 50%;
+		height: auto;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		top: 30px;
+	}
+	
+	#libraryMale02 {
+		float: left;
+		width: 27%;
+		height: auto;
+		margin: 17% 3% 0% 3%;
+		animation: slide-right-LibraryMale02 3s;
+	}
+	
+	@keyframes slide-right-LibraryMale02 {
+		from {
+			margin-left: -90%;
+		}
+		to {
+			margin-left: 3%;
+		}
+	}
+	
+	/*-----------sit02 Situation----------------------*/
+	
+	
+	/*-------------------SITUATION 03--------------------------*/
+
+	/*-----------sit03 Index----------------------*/
+	
+	.classroom {
+		background-image: url(../situation_03/assets03/Classroom-Background.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#sit03title {
+		width: 610px;
+		height: 160px;
+		position: absolute;
+		bottom: 0px;
+		left: 230px;
+		
+	}
+	
+	
+	/*-----------sit03 Characters----------------------*/
+	
+	#classroomMale01 {
+		float: left;
+		width: 27%;
+		height: auto;
+		margin: 8% 3% 0% 4%;
+		animation: slide-right-classroomMale01 1s;
+	}
+	
+	@keyframes slide-right-classroomMale01 {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 4%;
+		}
+	}
+	
+	#classroomMaleCorrect {
+		width: 50%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		top: -5%;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	#classroomFemale01 {
+		float: left;
+		width: 26%;
+		height: auto;
+		margin: 14% 3% 0% 4%;
+		animation: slide-right-classroomFemale01 2s;
+	}
+	
+	@keyframes slide-right-classroomFemale01 {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 4%;
+		}
+	}
+	
+	#classroomFemale02 {
+		float: left;
+		width: 26%;
+		height: auto;
+		margin: 20.5% 2% 0% 3%;
+		animation: slide-right-classroomFemale02 3s;
+	}
+	
+	@keyframes slide-right-classroomFemale02 {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 3%;
+		}
+	}
+	
+	
+	/*-----------sit03 Situation----------------------*/
+	
+	#Box3 {
+		background-image: url(../situation_03/assets03/Next-Level-Background.png);
+	
+	}
+	
+	
+	/*-------------------SITUATION 04--------------------------*/
+
+	/*-----------sit04 Index----------------------*/
+	
+	.grocery {
+		background-image: url(../situation_04/assets04/Grocery-Background.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#sit04title {
+		width: 610px;
+		height: 160px;
+		position: absolute;
+		bottom: 0px;
+		left: 230px;
+		
+	}
+	
+	
+	/*-----------sit04 Characters----------------------*/
+	
+	#groceryMale {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 11% 2% 0% 2%;
+		animation: slide-right-groceryMale 1s;
+	}
+	@keyframes slide-right-groceryMale {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	
+	#groceryFemale01 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 13% 2% 0% 2%;
+		animation: slide-right-groceryFemale01 2s;
+	}
+	
+	@keyframes slide-right-groceryFemale01 {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	#groceryFemale02 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 11% 2% 0% 2%;
+		animation: slide-right-groceryFemale02 3s;
+	}
+	
+	@keyframes slide-right-groceryFemale02 {
+		from {
+			margin-left: -30%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	#groceryFemale02Correct {
+		width: 52%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		top: -5%;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	/*-----------sit04 Situation----------------------*/
+	
+	#wrongExplain4 {
+		position: absolute;
+		width: 75%;
+		height: auto;
+		right: 0;
+		left: 0;
+		bottom: -20px;
+		margin-right: auto;
+		margin-left: auto;
+		animation: slide-up-wrongEx4 2s;
+	}
+	
+	@keyframes slide-up-wrongEx4 {
+		from {
+			bottom: -800px;
+		}
+		to {
+			bottom: -20px;
+		}
+	}
+
+	#Box4 {
+		background-image: url(../situation_04/assets04/Next-Level-Background.png);
+	
+	}
+	
+	/*-------------------SITUATION 05--------------------------*/
+
+	/*-----------sit05 Index----------------------*/
+	
+	.stadium {
+		background-image: url(../situation_05/assets05/Stadium-Background.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#sit05title {
+		width: 610px;
+		height: 160px;
+		position: absolute;
+		bottom: 0px;
+		left: 230px;
+		
+	}
+	
+	
+	/*-----------sit05 Characters----------------------*/
+	
+	#stadiumFemale01 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 16% 2% 0% 2%;
+		animation: slide-right-stadiumFemale01 1s;
+	}
+	
+	@keyframes slide-right-stadiumFemale01 {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	#stadiumFemale02 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 13% 2% 0% 2%;
+		animation: slide-right-stadiumFemale02 2s;
+	}
+	
+	@keyframes slide-right-stadiumFemale02 {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	#stadiumFemale02Correct {
+		width: 52%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		top: -5%;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	#stadiumMale {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 9% 2% 0% 2%;
+		animation: slide-right-stadiumMale 3s;
+	}
+	@keyframes slide-right-stadiumMale {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	/*-----------sit05 Situation----------------------*/
+	
+	#Box5 {
+		background-image: url(../situation_05/assets05/Next-Level-Background.png);
+	}
+	
+	/*-------------------SITUATION 06--------------------------*/
+
+	/*-----------sit06 Index----------------------*/
+	
+	.neighborhood {
+		background-image: url(../situation_06/assets06/Neighborhood-Background.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#sit06title {
+		width: 610px;
+		height: 160px;
+		position: absolute;
+		bottom: 0px;
+		left: 230px;
+		
+	}
+	
+	
+	/*-----------sit06 Characters----------------------*/
+	
+	#neighborhoodMale01 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 6% 2% 0% 2%;
+		animation: slide-right-neighborhoodMale01 1s;
+	}
+	
+	@keyframes slide-right-neighborhoodMale01 {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	#neighborhoodMale02 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 15% 2% 0% 2%;
+		animation: slide-right-neighborhoodMale02 2s;
+	}
+	
+	@keyframes slide-right-neighborhoodMale02 {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	
+	
+	#neighborhoodFemale {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 9% 2% 0% 2%;
+		animation: slide-right-neighborhoodFemale 3s;
+	}
+	@keyframes slide-right-neighborhoodFemale {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	#neighborhoodFemaleCorrect {
+		width: 52%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		top: -5%;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	/*-----------sit06 Situation----------------------*/
+	
+	
+	#wrongExplain6 {
+		position: absolute;
+		width: 75%;
+		height: auto;
+		right: 0;
+		left: 0;
+		bottom: -20px;
+		margin-right: auto;
+		margin-left: auto;
+		animation: slide-up-wrongEx6 2s;
+	}
+	
+	@keyframes slide-up-wrongEx6 {
+		from {
+			bottom: -800px;
+		}
+		to {
+			bottom: -20px;
+		}
+	}
+	#Box6 {
+		background-image: url(../situation_06/assets06/Next-Level-Background.png);
+	}
+	
+	/*-------------------SITUATION 07--------------------------*/
+
+	/*-----------sit07 Index----------------------*/
+	
+	.mosque {
+		background-image: url(../situation_07/assets07/Mosque-Background.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		text-align: justify;
+	}
+	
+	#sit07title {
+		width: 610px;
+		height: 160px;
+		position: absolute;
+		bottom: 0px;
+		left: 230px;
+		
+	}
+	
+	
+	/*-----------sit07 Characters----------------------*/
+	
+	#mosqueFemale01 {
+		float: left;
+		width: 28%;
+		height: auto;
+		margin: 8% 2% 0% 4%;
+		animation: slide-right-mosqueFemale01 1s;
+	}
+	
+	@keyframes slide-right-mosqueFemale01 {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 4%;
+		}
+	}
+	
+	#mosqueFemale01Correct {
+		width: 52%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		top: -5%;
+		-webkit-filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+  		filter: drop-shadow(5px 5px 20px rgba(30,30,30, 0.5));
+	}
+	
+	#mosqueMale {
+		float: left;
+		width: 30%;
+		height: auto;
+		margin: 12% 2% 0% 2%;
+		animation: slide-right-mosqueMale 2s;
+	}
+	
+	@keyframes slide-right-mosqueMale {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+		
+	#mosqueFemale02 {
+		float: left;
+		width: 29%;
+		height: auto;
+		margin: 13% 0% 0% 2%;
+		animation: slide-right-mosqueFemale02 3s;
+	}
+	@keyframes slide-right-mosqueFemale02 {
+		from {
+			margin-left: -40%;
+		}
+		to {
+			margin-left: 2%;
+		}
+	}
+	
+	
+	/*-----------sit07 Situation----------------------*/
+	
+	#wrongExplain7 {
+		position: absolute;
+		width: 75%;
+		height: auto;
+		right: 0;
+		left: 0;
+		bottom: -20px;
+		margin-right: auto;
+		margin-left: auto;
+		animation: slide-up-wrongEx7 2s;
+	}
+	
+	@keyframes slide-up-wrongEx7 {
+		from {
+			bottom: -800px;
+		}
+		to {
+			bottom: -20px;
+		}
+	}
+	
+	#Box7 {
+		background-image: url(../situation_07/assets07/Next-Level-Background.png);
+	
+	}
+
+
